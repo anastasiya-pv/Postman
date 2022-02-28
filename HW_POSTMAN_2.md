@@ -88,6 +88,48 @@ http://162.55.220.72:5005/object_info_3
 11. Проверить, что параметр name имеет значение Luky.
 12. Проверить, что параметр age имеет значение 4.
 
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+var jsonData = pm.response.json()
+let salary_response = +jsonData.salary
+var age_response = +jsonData.age
+
+pm.test("Check name", function () {
+    pm.expect(jsonData.name).to.eql("Nastya");
+});
+
+pm.test("Check age_response", function () {
+    pm.expect(age_response).to.eql(26);
+});
+
+pm.test("Check salary", function () {
+    pm.expect(jsonData.salary).to.eql(600);
+});
+
+var request = request.data
+
+pm.test("The name in request is equal to the name in response", function () {
+    pm.expect(jsonData.name).to.eql(request.name);
+});
+
+var request_age = +request.age
+pm.test("The age in requset is equal to the age in response", function () {
+    pm.expect(age_response).to.eql(request_age);
+});
+var request_salary= +request.salary
+pm.test("The salary in requset is equal to the salary in response", function () {
+    pm.expect(salary_response).to.eql(request_salary);
+});
+console.log(jsonData.family)
+
+var salary_1_5_year=jsonData.family.u_salary_1_5_year
+pm.test("The u_salary_1_5_year  is equal to salary from request * 4", function () {
+    pm.expect(salary_1_5_year).to.eql(salary_response*4);
+});
+
+
 http://162.55.220.72:5005/object_info_4
 1. Отправить запрос.
 2. Статус код 200
@@ -110,3 +152,28 @@ http://162.55.220.72:5005/object_info_4
 19. Передать в окружение переменную age
 20. Передать в окружение переменную salary
 21. Написать цикл который выведет в консоль по порядку элементы списка из параметра salary.
+
+http://162.55.220.72:5005/user_info_2
+1. Вставить параметр salary из окружения в request
+2. Вставить параметр age из окружения в age
+3. Вставить параметр name из окружения в name
+4. Отправить запрос.
+5. Статус код 200
+6. Спарсить response body в json.
+7. Спарсить request.
+8. Проверить, что json response имеет параметр start_qa_salary
+9. Проверить, что json response имеет параметр qa_salary_after_6_months
+10. Проверить, что json response имеет параметр qa_salary_after_12_months
+11. Проверить, что json response имеет параметр qa_salary_after_1.5_year
+12. Проверить, что json response имеет параметр qa_salary_after_3.5_years
+13. Проверить, что json response имеет параметр person
+14. Проверить, что параметр start_qa_salary равен salary из request (salary забрать из request.)
+15. Проверить, что параметр qa_salary_after_6_months равен salary*2 из request (salary забрать из request.)
+16. Проверить, что параметр qa_salary_after_12_months равен salary*2.7 из request (salary забрать из request.)
+17. Проверить, что параметр qa_salary_after_1.5_year равен salary*3.3 из request (salary забрать из request.)
+18. Проверить, что параметр qa_salary_after_3.5_years равен salary*3.8 из request (salary забрать из request.)
+19. Проверить, что в параметре person, 1-й элемент из u_name равен salary из request (salary забрать из request.)
+20. Проверить, что что параметр u_age равен age из request (age забрать из request.)
+21. Проверить, что параметр u_salary_5_years равен salary*4.2 из request (salary забрать из request.)
+22. ***Написать цикл который выведет в консоль по порядку элементы списка из параметра person.
+
