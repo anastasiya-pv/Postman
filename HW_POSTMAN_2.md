@@ -152,6 +152,51 @@ http://162.55.220.72:5005/object_info_4
 19. Передать в окружение переменную age
 20. Передать в окружение переменную salary
 21. Написать цикл который выведет в консоль по порядку элементы списка из параметра salary.
+pm.test("Status code is 200", function(){
+    pm.response.to.have.status(200);
+});
+
+let jsonData = pm.response.json()
+let request_4= pm.request.url.query.toObject()
+
+pm.test("The name in request is equal to the name in response", function(){
+    pm.expect(jsonData.name).to.eql(request_4.name);
+});
+
+let age_4=+request_4.age
+pm.test("The age in request is equal to the age in response", function(){
+    pm.expect(jsonData.age).to.eql(age_4);
+});
+
+console.log(request_4.salary)
+console.log(jsonData.salary)
+
+console.log(jsonData.salary[0])
+console.log(jsonData.salary[1])
+console.log(jsonData.salary[2])
+
+let salary_4=+request_4.salary
+pm.test("Salary 0 in pesponse is equal to salary in request", function (){
+    pm.expect(jsonData.salary[0]).to.eql(salary_4);
+});
+
+let salary1=+jsonData.salary[1]
+pm.test("Salary 1 in pesponse is equal to salary in request *2", function (){
+    pm.expect(salary1).to.eql(salary_4 * 2);
+});
+
+pm.test("Salary 2 in pesponse is equal to salary in request *3", function (){
+    pm.expect(+jsonData.salary[2]).to.eql(salary_4 * 3);
+});
+
+pm.environment.set("name",request_4.name);
+pm.environment.set("age",request_4.age);
+pm.environment.set("salary",request_4.salary);
+
+
+for (let  i = 0; i < jsonData.salary.length; i++)
+console.log(jsonData.salary[i])
+
 
 http://162.55.220.72:5005/user_info_2
 1. Вставить параметр salary из окружения в request
