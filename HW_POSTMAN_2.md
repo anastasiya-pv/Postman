@@ -1,11 +1,11 @@
 HW_2 Postman
-
+========================
 
 http://162.55.220.72:5005/first
 1. Отправить запрос.
 2. Статус код 200
 3. Проверить, что в body приходит правильный string. - This is the first responce from server!
-
+```
 //Статус код 200
 pm.test("Status code is 200", function(){
     pm.response.to.have.status(200);
@@ -14,7 +14,7 @@ pm.test("Status code is 200", function(){
 pm.test("Body is correct", function(){
     pm.response.to.have.body("This is the first responce from server!")
 });
-
+```
 
 
 http://162.55.220.72:5005/user_info_3
@@ -30,6 +30,7 @@ http://162.55.220.72:5005/user_info_3
 10. Проверить, что salary в ответе равно salary s request (salary забрать из request.)
 11. Вывести в консоль параметр family из response.
 12. Проверить что u_salary_1_5_year в ответе равно salary*4 (salary забрать из request)
+```
 //Статус код 200 +
 pm.test("Status code is 200", function(){
     pm.response.to.have.status(200);
@@ -70,7 +71,7 @@ console.log(jsonData.family)
 pm.test("u_salary_1_5_year from resp is eql to salary from req * 4", function(){
     pm.expect(jsonData.family.u_salary_1_5_year).to.eql(salary*4);
 });
-
+```
 
 
 http://162.55.220.72:5005/object_info_3
@@ -86,6 +87,7 @@ http://162.55.220.72:5005/object_info_3
 10. Проверить, что у параметра dog есть параметры age.
 11. Проверить, что параметр name имеет значение Luky.
 12. Проверить, что параметр age имеет значение 4.
+```
 //Статус код 200
 pm.test("Status code is 200", function(){
     pm.response.to.have.status(200);
@@ -126,7 +128,7 @@ pm.test("Parameter \"name\ is Luky", function(){
 pm.test("Parameter \"age\" is 4", function() {
    pm.expect(jsonData.family.pets.dog.age).to.eql(4);
 });
-
+```
 
 http://162.55.220.72:5005/object_info_4
 1. Отправить запрос.
@@ -150,6 +152,7 @@ http://162.55.220.72:5005/object_info_4
 19. Передать в окружение переменную age
 20. Передать в окружение переменную salary
 21. Написать цикл который выведет в консоль по порядку элементы списка из параметра salary.
+```
 //Статус код 200
 pm.test("Status code is 200", function(){
     pm.response.to.have.status(200);
@@ -198,10 +201,6 @@ pm.environment.set("name", get_params.name);
 pm.environment.set("age", get_params.age);
 // Создать в окружении переменную salary
 pm.environment.set("salary", get_params.salary);
-// Передать в окружение переменную name - 
-// Передать в окружение переменную age
-// Передать в окружение переменную salary
-
 
 //Написать цикл который выведет в консоль по порядку элементы списка из параметра salary.
 for(let i=0;i < jsonData.salary.length; i++)
@@ -209,7 +208,7 @@ console.log(jsonData.salary[i])
 //or
 jsonData.salary.forEach(element => (
     console.log(element)));
-
+```
 
 
 http://162.55.220.72:5005/user_info_2
@@ -236,6 +235,7 @@ http://162.55.220.72:5005/user_info_2
 21. Проверить, что параметр u_salary_5_years равен salary*4.2 из request (salary забрать из request.)
 22. ***Написать цикл который выведет в консоль по порядку элементы списка из параметра person.
 
+```
 //Статус код 200
 pm.test("status code is 200", function(){
     pm.response.to.have.status(200);
@@ -319,4 +319,4 @@ Object.keys(jsonData.person).forEach(i => {
 for (const [key, value] of Object.entries(jsonData.person)) {
   console.log(`${key}: ${value}`);
 };
-
+```
