@@ -221,3 +221,168 @@ pm.test("Check the calculation in start_qa_salary", function(){
     pm.expect(jsonData.start_qa_salary).to.eql(salary);
 });
 ```
+**4) Достать значение из поля 'u_salary_1.5_year' и передать в поле salary запроса**
+```
+pm.environment.set('u_salary_1.5_year', jsonData.person.u_salary_1_5_year)
+pm.sendRequest('http://162.55.220.72:5005/get_test_user', (error, response) => {
+  if (error) {
+    console.log(error);
+  } else {
+  pm.environment.get('u_salary_1.5_year');
+  }
+});
+```
+3) http://162.55.220.72:5005/new_data
+req.
+POST
+age: int
+salary: int
+name: str
+auth_token
+
+```Resp.
+{'name':name,
+  'age': int(age),
+  'salary': [salary, str(salary*2), str(salary*3)]}
+```
+
+**1) Статус код 200**
+```
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+```
+**2) Проверка структуры json в ответе.**
+```
+let jsonData= pm.response.json()
+let schema_3  = {   "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "age": 19,
+            "name": "Sasha",
+            "salary": [
+                20,
+                "40",
+                "60"
+            ]
+        }
+    ],
+    "required": [
+        "age",
+        "name",
+        "salary"
+    ],
+    "properties": {
+        "age": {
+            "$id": "#/properties/age",
+            "type": "integer",
+            "title": "The age schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                19
+            ]
+        },
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "title": "The name schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Sasha"
+            ]
+        },
+        "salary": {
+            "$id": "#/properties/salary",
+            "type": "array",
+            "title": "The salary schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    20,
+                    "40"
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/salary/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/salary/items/anyOf/0",
+                        "type": "integer",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            20
+                        ]
+                    },
+                    {
+                        "$id": "#/properties/salary/items/anyOf/1",
+                        "type": "string",
+                        "title": "The second anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "40",
+                            "60"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": true
+}
+
+
+pm.test('Schema is valid', function () {
+    pm.expect(tv4.validate(jsonData, schema_3)).to.be.true;
+});
+```
+**3) В ответе указаны коэффициенты умножения salary, напишите тесты по проверке правильности результата перемножения на коэффициент.**
+```
+
+let body_req = request.data
+let salary = +body_req.salary
+
+pm.test("Check the calculation_1", function(){
+    pm.expect(jsonData.salary[0]).to.eql(salary);
+});
+//jsonData.salary[1] is a string
+let salary_1 = +jsonData.salary[1]
+pm.test("Check the calculation_2", function(){
+    pm.expect(salary_1).to.eql(salary*2);
+});
+//jsonData.salary[2] is a string
+let salary_2 = +jsonData.salary[2]
+pm.test("Check the calculation_3", function(){
+    pm.expect(salary_2).to.eql(salary*3);
+});
+```
+**4) проверить, что 2-й элемент массива salary больше 1-го и 0-го**
+```
+//JUST FOR YOURSELF
+if (salary_2>salary_1, salary_2>jsonData.salary[0]) {
+  console.log("passed");
+} else {
+  console.log("failed");
+}
+
+  // TEST OPTION
+
+pm.test("jsonData.salary [0]", function(){
+ pm.expect(salary_2).to.be.above(jsonData.salary[0])
+});
+//
+ pm.test("jsonData.salary [1]] ", function(){
+pm.expect(salary_2).to.be.above(salary_1);
+});
+```
