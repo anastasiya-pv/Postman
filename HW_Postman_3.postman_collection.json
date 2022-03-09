@@ -543,7 +543,7 @@
 							"};\r",
 							"\r",
 							"pm.test('Schema is valid', function () {\r",
-							"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+							"    pm.expect(tv4.validate(jsonData, schema, true, true)).to.be.true;\r",
 							"});\r",
 							"//В ответе указаны коэффициенты умножения weight, напишите тесты по проверке правильности результата перемножения на коэффициент.\r",
 							"let post_form_data = request.data\r",
