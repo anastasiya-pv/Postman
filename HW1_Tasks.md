@@ -8,7 +8,7 @@ EndPoint: /get_method**
 **Request url params:   
  name: str  
  age: int**
-![Exercise_1](https://github.com/anastasiya-pv/Testing/blob/main/Screenshots/1.png)
+![Exercise_1](https://github.com/anastasiya-pv/Postman/blob/main/Screenshots/1.png)
 
 **Resp:**
 ```
@@ -27,7 +27,7 @@ EndPoint: /user_info_3**
  name: str  
  age: int  
  salary: int**  
- ![Exercise_2](https://github.com/anastasiya-pv/Testing/blob/main/Screenshots/2.png)
+ ![Exercise_2](https://github.com/anastasiya-pv/Postman/blob/main/Screenshots/2.png)
  
 **Resp:**
 ```
@@ -47,7 +47,7 @@ EndPoint: /object_info_1**
  name: str  
  age: int  
  weight: int**  
-![Exercise_3](https://github.com/anastasiya-pv/Testing/blob/main/Screenshots/3.png)
+![Exercise_3](https://github.com/anastasiya-pv/Postman/blob/main/Screenshots/3.png)
 
 **Resp:**
 ```
@@ -66,7 +66,7 @@ EndPoint: /object_info_2**
  name: str  
  age: int  
  salary: int**  
- ![Exercise_4](https://github.com/anastasiya-pv/Testing/blob/main/Screenshots/4.png)
+ ![Exercise_4](https://github.com/anastasiya-pv/Postman/blob/main/Screenshots/4.png)
  
 **Resp:**
 ```
@@ -90,7 +90,7 @@ EndPoint: /object_info_3**
  name: str  
  age: int  
  salary: int**  
-![Exercise_5](https://github.com/anastasiya-pv/Testing/blob/main/Screenshots/5.png)
+![Exercise_5](https://github.com/anastasiya-pv/Postman/blob/main/Screenshots/5.png)
 
 **Resp:**
 ```
@@ -115,7 +115,7 @@ EndPoint: /object_info_4**
  name: str  
  age: int  
  salary: int**  
- ![Exercise_6](https://github.com/anastasiya-pv/Testing/blob/main/Screenshots/6.png)
+ ![Exercise_6](https://github.com/anastasiya-pv/Postman/blob/main/Screenshots/6.png)
  
 **Resp:**
 ```
@@ -132,7 +132,7 @@ EndPoint: /user_info_2**
  name: str  
  age: int  
  salary: int**  
-![Exercise_7](https://github.com/anastasiya-pv/Testing/blob/main/Screenshots/7.png)
+![Exercise_7](https://github.com/anastasiya-pv/Postman/blob/main/Screenshots/7.png)
 
 **Resp:**
 ```
